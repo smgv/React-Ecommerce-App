@@ -11,14 +11,15 @@ export const selectShopItems = createSelector(
 // So this selector is used to convert an object to an array so component can use collections
 export const selectCollectionsForPreview = createSelector(
   [selectShopItems],
-  collections => Object.keys(collections).map(key => collections[key])
+  collections =>
+    collections ? Object.keys(collections).map(key => collections[key]) : []
 );
 
 // Using Hash.
 export const selectCollections = collectionUrlParam =>
   createSelector(
     [selectShopItems],
-    collections => collections[collectionUrlParam]
+    collections => (collections ? collections[collectionUrlParam] : null)
   );
 
 // Using Array.
