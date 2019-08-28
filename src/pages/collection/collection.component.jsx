@@ -14,7 +14,22 @@ import {
 // import "./collection.styles.scss";
 
 const CollectionPage = ({ collection }) => {
+
+  // below code is just for practise purpose only.
+  // useEffect(() => {
+  //   console.log("I am Subscribing i.e mounted");
+  //   const unSubscribe = firestore
+  //     .collection("collections")
+  //     .onSnapshot(snapshot => console.log(snapshot));
+
+  //   return () => {
+  //     console.log("I am unSubscribing i.e unmounted");
+  //     unSubscribe();
+  //   };
+  // });
+
   const { title, items } = collection;
+
   return (
     <CollectionPageContainer>
       <CollectionTitle>{title}</CollectionTitle>
