@@ -32,7 +32,7 @@ if (process.env.NODE_ENV !== "production") {
 }
 
 if (process.env.NODE_ENV === "production") {
-  app.listen(80, error => {
+  app.listen(5000, error => {
     if (error) throw error;
     console.log("Server running on port: 80!");
   });
