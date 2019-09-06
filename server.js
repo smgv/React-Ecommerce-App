@@ -24,16 +24,30 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-app.listen(process.env.port || 5000, error => {
-  if (error) throw error;
-  console.log("Server running on port: " + port);
-});
+if (process.env.NODE_ENV !== "production") {
+  app.listen(5000, error => {
+    if (error) throw error;
+    console.log("Server running on port:  5000!");
+  });
+}
+
+if (process.env.NODE_ENV === "production") {
+  app.listen(process.env.port, error => {
+    if (error) throw error;
+    console.log("Server running on port: " + process.env.port);
+  });
+}
+
+// app.listen(process.env.port || 5000, error => {
+//   if (error) throw error;
+//   console.log("Server running on port: " + port);
+// });
 
 app.post("/payment", (req, res) => {
   const body = {
     source: req.body.token.id,
     amount: req.body.amount,
-    currency: "usd"
+    currency: "usd",
   };
 
   stripe.charges.create(body, (stripeErr, stripeRes) => {
