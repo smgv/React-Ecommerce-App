@@ -66,8 +66,9 @@ export const CollectionFooterContainer = styled.div`
 `;
 
 export const NameContainer = styled.span`
-  width: 90%;
+  width: 80%;
   margin-bottom: 15px;
+  font-size: 20px;
 
   @media screen and (max-width: 800px) {
     width: 75%;
@@ -76,8 +77,9 @@ export const NameContainer = styled.span`
 `;
 
 export const PriceContainer = styled.span`
-  width: 10%;
+  width: 20%;
   text-align: right;
+  font-size: 20px;
 
   @media screen and (max-width: 800px) {
     width: 25%;
