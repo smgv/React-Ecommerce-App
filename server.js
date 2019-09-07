@@ -9,7 +9,7 @@ const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 // Express is just a library that allow us to build an API SERVER easily.
 const app = express();
-const port = process.env.port || 5000;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
 if (process.env.NODE_ENV === "production") {
+  app.use(enforce.HTTPS({ trustProtoHeader: true }));
   app.use(express.static(path.join(__dirname, "client/build")));
 
   app.get("*", function(req, res) {
@@ -24,24 +25,14 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-if (process.env.NODE_ENV !== "production") {
-  app.listen(5000, error => {
-    if (error) throw error;
-    console.log("Server running on port:  5000!");
-  });
-}
+app.listen(process.env.PORT || 5000, error => {
+  if (error) throw error;
+  console.log("Server running on port: " + port);
+});
 
-if (process.env.NODE_ENV === "production") {
-  app.listen(process.env.port || 8080, error => {
-    if (error) throw error;
-    console.log("Server running on port: " + process.env.port);
-  });
-}
-
-// app.listen(process.env.port || 5000, error => {
-//   if (error) throw error;
-//   console.log("Server running on port: " + port);
-// });
+app.get("/service-worker.js", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "..", "build", "service-worker.js"));
+});
 
 app.post("/payment", (req, res) => {
   const body = {
