@@ -1,0 +1,22 @@
+.contact-page {
+  width: 100%;
+
+  @media screen and (max-width: 800px){
+      padding: 20px;
+  }
+
+  h1{
+      display: flex;
+      justify-content: center;
+  }
+
+  .contact-content{
+     font-size: 20px;
+     word-wrap: none;
+  }
+
+  .contact-info{
+      margin: 50px 0px;
+  }
+}
+

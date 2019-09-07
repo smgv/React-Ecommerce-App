@@ -20,6 +20,8 @@ const HomePage = lazy(() => import("./pages/homepage/homepage.component"));
 const ShopPage = lazy(() => import("./pages/shop/shop.component"));
 const Header = lazy(() => import("./components/header/header.component"));
 const CheckoutPage = lazy(() => import("./pages/checkout/checkout.component"));
+const ContactPage = lazy(() => import("./pages/contact/contact.component"));
+
 const SignInAndSignUpPage = lazy(() =>
   import("./pages/sign-in-and-up/sign-in-and-up.component")
 );
@@ -61,6 +63,7 @@ const App = ({ setCurrentUser, currentUser }) => {
             <Route exact path="/" component={HomePage} />
             <Route path="/shop" component={ShopPage} />
             <Route exact path="/checkout" component={CheckoutPage} />
+            <Route exact path="/contact" component={ContactPage} />
             <Route
               exact
               path="/signin"
